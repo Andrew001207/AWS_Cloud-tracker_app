@@ -10,11 +10,12 @@ location = {}
 # Custom MQTT message callback
 def customCallback(client, userdata, message):
     global location
+    print('UPDATE LOCATION')
     print("Received a new message: ")
     print(message.payload)
     result = parseCoords(str(message.payload))
-    if result is not None:
-        location[0] = result
+    # if result is not None:
+    location[0] = result
     print(location)
     print("from topic: ")
     print(message.topic)

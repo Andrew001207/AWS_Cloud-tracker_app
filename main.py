@@ -19,6 +19,7 @@ GoogleMaps(
 # NOTE: this example is using a form to get the apikey
 
 def makePin(lat, lon):
+    print (MQTT.location)
     return  {
                 'icon': icons.dots.green,
                 'lat': lat,
@@ -27,7 +28,9 @@ def makePin(lat, lon):
             }
 
 def updateReviews():
-    print(MQTT.location.items())
+    print(MQTT.location)
+    if MQTT.location == {}:
+        print('No info yet')
     return tuple([makePin(*item[1]) for item in MQTT.location.items()])
 
 @app.route("/", methods=["GET", "POST"])
